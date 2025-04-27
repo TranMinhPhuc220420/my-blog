@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+
+pydantic[all]
+motor
+python-multipart
