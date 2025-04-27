@@ -81,10 +81,3 @@ Example production docker-compose file can be added separately.
 
 ---
 ```
-
----
-| Hot reload chuẩn chỉnh | ✅ |
-| Makefile để quản lý lệnh nhanh | ✅ |
-| README.md đẹp, chuyên nghiệp | ✅ |
-
----
