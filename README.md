@@ -77,38 +77,12 @@ Example production docker-compose file can be added separately.
 
 ## 📬 Contact
 
-- Project Maintainer: [Your Name](mailto:your-email@example.com)
+- Project Maintainer: [Minh Phúc](mailto:dev.minhphuc@gmail.com)
 
 ---
 ```
 
 ---
-
-# 🎯 Giải thích nhanh
-
-| Phần | Ghi chú |
-|:-----|:--------|
-| Getting Started | Hướng dẫn clone và chạy ngay `make up` |
-| Project Structure | Show cấu trúc thư mục |
-| Development Commands | Ghi các lệnh Make gọn gàng |
-| Production | Nhắc sau này dev thêm file compose production |
-| Notes | Giải thích hot reload, override... |
-
----
-
-# 🧹 Bạn cần làm:
-
-1. Tạo file mới `README.md` ở root.
-2. Copy paste nội dung mình gửi ở trên.
-3. Chỉnh sửa tên project và thông tin liên lạc (email) cho đúng của bạn.
-
----
-
-# 🔥 Tổng kết:
-
-| Việc cần làm | Đã xong chưa? |
-|:------------|:--------------|
-| Docker chạy FE + BE + MongoDB | ✅ |
 | Hot reload chuẩn chỉnh | ✅ |
 | Makefile để quản lý lệnh nhanh | ✅ |
 | README.md đẹp, chuyên nghiệp | ✅ |
