@@ -1,5 +1,20 @@
-# Project Title
+# My Blog
 FastAPI Backend + Next.js Frontend + MongoDB
+
+---
+
+## 🌟 What This Project Does
+This project provides a full-stack web application template with the following features:
+
+- **Frontend**: A modern, responsive user interface built with Next.js.
+- **Backend**: A robust API server powered by FastAPI.
+- **Database**: MongoDB for efficient and scalable data storage.
+
+### Key Use Cases:
+- Quickly set up a full-stack application with minimal configuration.
+- Develop and test APIs with FastAPI's interactive documentation.
+- Build and deploy modern web applications with Next.js.
+- Seamlessly integrate with MongoDB for data persistence.
 
 ---
 
@@ -7,8 +22,8 @@ FastAPI Backend + Next.js Frontend + MongoDB
 
 ### 1. Clone Project
 ```bash
-git clone <your-repository-url>
-cd <project-folder>
+git clone https://github.com/TranMinhPhuc220420/my-blog.git
+cd my-blog
 ```
 
 ### 2. Run Application
@@ -73,11 +88,10 @@ Example production docker-compose file can be added separately.
 - Hot-reload is enabled for both frontend and backend.
 - `node_modules` are excluded from bind mount to prevent issues.
 
----
+--- 
 
 ## 📬 Contact
 
 - Project Maintainer: [Minh Phúc](mailto:dev.minhphuc@gmail.com)
 
 ---
-```
