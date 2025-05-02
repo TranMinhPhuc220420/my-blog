@@ -5,7 +5,8 @@ from pymongo.database import Database
 from pymongo.collection import Collection
 from bson import ObjectId
 
-from schemas.item import ItemCreate, Item, convert_objectid_to_str
+from schemas.item import ItemCreate, Item
+from utils.func import convert_object_id_to_str
 
 def get_item_collection(db: Database) -> Collection:
     return db.get_collection("items")
@@ -21,7 +22,7 @@ def create_item(db: Database, item: ItemCreate) -> Item:
     result = collection.insert_one(item_dict)
 
     created_item_data = collection.find_one({"_id": result.inserted_id})
-    created_item_data['_id'] = convert_objectid_to_str(created_item_data['_id'])
+    created_item_data['_id'] = convert_object_id_to_str(created_item_data['_id'])
 
     return Item(**created_item_data)
 
@@ -30,7 +31,7 @@ def get_item(db: Database, item_id: str) -> Optional[Item]:
     try:
         item_data = collection.find_one({"_id": ObjectId(item_id)})
         if item_data:
-            item_data['_id'] = convert_objectid_to_str(item_data['_id'])
+            item_data['_id'] = convert_object_id_to_str(item_data['_id'])
             return Item(**item_data)
         return None
     except Exception as e:
@@ -43,7 +44,7 @@ def get_items(db: Database, skip: int = 0, limit: int = 100) -> List[Item]:
     
     result = []
     for item_data in items_cursor:
-        item_data['_id'] = convert_objectid_to_str(item_data['_id'])
+        item_data['_id'] = convert_object_id_to_str(item_data['_id'])
         result.append(Item(**item_data))
     
     return result

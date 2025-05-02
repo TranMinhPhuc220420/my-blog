@@ -1,10 +1,6 @@
 #!/bin/bash
-source environments/my_env/bin/activate
+source environment/bin/activate
 
-systemctl start mongod
+uvicorn main:app --reload --host 0.0.0.0 --port 8000 --reload-exclude server.log
 
-# fastapi dev main.py
-uvicorn main:app --reload --reload-exclude server.log
-
-systemctl stop mongod
 deactivate

@@ -4,3 +4,12 @@ uvicorn[standard]
 pydantic[all]
 motor
 python-multipart
+pydantic-settings
+websockets
+pyjwt
+bcrypt==4.0.1
+passlib
+python-jose
+pymongo
+starlette
+cryptography
