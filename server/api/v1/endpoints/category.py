@@ -56,8 +56,7 @@ def create_new_category(
   return new_category
 
 
-@router.put("/{namespace}/categories/{category_id}/update", response_model=Category,
-            status_code=status.HTTP_201_CREATED)
+@router.put("/{namespace}/categories/{category_id}/update", response_model=Category, status_code=status.HTTP_201_CREATED)
 def update_category(
     namespace: str,
     request: Request,

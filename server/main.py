@@ -17,6 +17,8 @@ from api.v1.endpoints import (
   websocket as websocket_endpoints,
   auth as auth_endpoints,
   category as category_endpoints,
+  blog as blog_endpoints,
+  images as images_endpoints,
 )
 
 # ─── Logger Setup ──────────────────────────────────────────────────
@@ -54,7 +56,9 @@ app = FastAPI(
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # ─── Routers ───────────────────────────────────────────────────────
+app.include_router(images_endpoints.router, tags=["items"])
 app.include_router(item_endpoints.router, prefix="/api/v1", tags=["items"])
 app.include_router(websocket_endpoints.router, prefix="/api/v1", tags=["websocket"])
 app.include_router(auth_endpoints.router, prefix="/api/v1", tags=["auth"])
 app.include_router(category_endpoints.router, prefix="/api/v1", tags=["category"])
+app.include_router(blog_endpoints.router, prefix="/api/v1", tags=["blog"])

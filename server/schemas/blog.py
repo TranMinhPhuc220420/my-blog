@@ -1,20 +1,21 @@
 from typing import Optional
 
+from fastapi import UploadFile
 from pydantic import BaseModel, Field
 from datetime import datetime
 
 
 class BlogBase(BaseModel):
-  image_url: str
   title: str
   content: str
   author: str
   category: str
   tags: list
+  image_url: Optional[str] = ''
   comments: Optional[list] = []
 
 class BlogCreate(BlogBase):
-  pass
+  image: UploadFile
 
 
 class Blog(BlogBase):

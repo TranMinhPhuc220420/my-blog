@@ -13,3 +13,4 @@ python-jose
 pymongo
 starlette
 cryptography
+Pillow
