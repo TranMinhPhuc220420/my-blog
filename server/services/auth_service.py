@@ -1,6 +1,7 @@
 from fastapi import Request
 
 from core import security
+from core.config import ROLE_ADMIN
 
 from crud.user import get_user, get_user_by_username, set_refresh_token_for_user, set_info_login, remove_info_login
 from fastapi import HTTPException, status
@@ -113,7 +114,8 @@ def create_access_token_by_refresh_access_token(
 def check_login(
     request: Request,
     db: Database,
-    namespace: str
+    namespace: str,
+    target_role: str = None,
 ) -> bool:
   """
   Check if user is logged in
@@ -121,6 +123,7 @@ def check_login(
     request (Request): The FastAPI request object.
     db (Database): The MongoDB database instance.
     namespace (str): The namespace to set for the database.
+    target_role (str, optional): The role to check. Defaults to None.
 
   Returns:
     bool: True if user is logged in
@@ -137,14 +140,18 @@ def check_login(
   if not user_item:
     raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="User not found")
 
-  request.state.authenticated_user = user_item
+  request.state.auth = user_item
+
+  if target_role:
+    if user_item.role != target_role:
+      raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="You are not allowed to perform this action")
+
   return True
+
 
 def handle_logout(
     request: Request,
     db: Database,
 ):
-
-  auth = request.state.authenticated_user
+  auth = request.state.auth
   remove_info_login(db, auth.id)
-

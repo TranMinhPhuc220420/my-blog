@@ -4,6 +4,7 @@
 /environment
 
 /logs
+/logs/server.log
 
 .env
 .env.production

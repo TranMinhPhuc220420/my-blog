@@ -7,6 +7,8 @@ class UserBase(BaseModel):
     username: str
     hashed_password: str
 
+    role: Optional[str] = 'user'
+
     device_info: Optional[dict] = None
     refresh_token: Optional[str] = None
 
@@ -21,6 +23,10 @@ class User(UserBase):
 class RegisterRequest(BaseModel):
     username: str
     password: str
+
+class SetRoleRequest(BaseModel):
+    user_id: str
+    target_role: str
 
 class LoginRequest(BaseModel):
     username: str

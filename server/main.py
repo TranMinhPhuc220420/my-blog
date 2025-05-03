@@ -16,6 +16,7 @@ from api.v1.endpoints import (
   item as item_endpoints,
   websocket as websocket_endpoints,
   auth as auth_endpoints,
+  category as category_endpoints,
 )
 
 # ─── Logger Setup ──────────────────────────────────────────────────
@@ -56,3 +57,4 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 app.include_router(item_endpoints.router, prefix="/api/v1", tags=["items"])
 app.include_router(websocket_endpoints.router, prefix="/api/v1", tags=["websocket"])
 app.include_router(auth_endpoints.router, prefix="/api/v1", tags=["auth"])
+app.include_router(category_endpoints.router, prefix="/api/v1", tags=["category"])

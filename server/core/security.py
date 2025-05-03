@@ -6,6 +6,10 @@ from cryptography.fernet import Fernet
 from core.config import FERNET_KEY, JWT_SECRET_KEY, JWT_ALGORITHM, JWT_ACCESS_TOKEN_EXPIRE_MINUTES
 from core.config import JWT_REFRESH_SECRET_KEY, JWT_REFRESH_TOKEN_EXPIRE_MINUTES
 
+from core.logger import get_logger
+
+logger = get_logger(__name__)
+
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
@@ -60,6 +64,11 @@ def encrypt_access_token(access_token: str) -> str:
 def decrypt_access_token(encrypted_token: str) -> str:
   fernet = Fernet(FERNET_KEY)
 
-  decrypted_token = fernet.decrypt(encrypted_token.encode()).decode()
+  # Check encrypted_token is valid
+  try:
+    decrypted_token = fernet.decrypt(encrypted_token.encode()).decode()
+  except BaseException as e:
+    logger.warn('Encrypted token is not valid or has been modified')
+    return encrypted_token
 
   return decrypted_token

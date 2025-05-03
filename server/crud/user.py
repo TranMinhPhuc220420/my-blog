@@ -101,3 +101,8 @@ def get_info_login(db: Database, user_id: str) -> Optional[dict]:
 def remove_info_login(db: Database, user_id: str):
   collection = get_user_collection(db)
   collection.update_one({"_id": ObjectId(user_id)}, {"$set": {"refresh_token": None, "device_info": None}})
+
+
+def set_role_for_user(db: Database, user_id: str, role: str):
+  collection = get_user_collection(db)
+  collection.update_one({"_id": ObjectId(user_id)}, {"$set": {"role": role}})

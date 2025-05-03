@@ -12,6 +12,10 @@ from core.config import (
   EXPIRED_ACCESS_TOKEN_ERROR_CODE, BAD_REQUEST_ERROR_CODE,
 )
 
+from core.logger import get_logger
+
+logger = get_logger(__name__)
+
 
 def process_response(request) -> Request:
   # Auth by access token bearer
@@ -26,6 +30,8 @@ def process_response(request) -> Request:
     scheme, access_token_raw = auth_header.split()
     if scheme.lower() != "bearer":
       raise ValueError("Invalid scheme")
+    if not access_token_raw or len(access_token_raw.split(".")) != 3:
+      raise ValueError("Invalid access token")
     access_token = decrypt_access_token(access_token_raw)
   elif encrypt_access_token_raw:
     access_token = decrypt_access_token(encrypt_access_token_raw)
@@ -33,6 +39,8 @@ def process_response(request) -> Request:
   if access_token is not None:
     payload = verify_access_token(access_token)
 
+  # logger.info(access_token)
+  # logger.info(payload)
   request.state.jwt_payload = payload
 
   return request

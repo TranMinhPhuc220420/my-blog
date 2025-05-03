@@ -1,20 +1,17 @@
-from typing import Optional, Any
+from typing import Optional
 from pydantic import BaseModel, Field
 from datetime import datetime
 
 
-class ItemBase(BaseModel):
+class CategoryBase(BaseModel):
   name: str
-  description: Optional[str] = None
-  price: float
-  is_offered: Optional[bool] = False
+  color: str
 
-
-class ItemCreate(ItemBase):
+class CategoryCreate(CategoryBase):
   pass
 
 
-class Item(ItemBase):
+class Category(CategoryBase):
   id: str = Field(alias="_id")
   created_at: datetime = None
   updated_at: datetime = None

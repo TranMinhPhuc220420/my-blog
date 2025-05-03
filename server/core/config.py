@@ -45,6 +45,10 @@ JWT_ALGORITHM = all_config.jwt_algorithm
 
 FERNET_KEY = all_config.fernet_key
 
+# Roles
+ROLE_USER = "user"
+ROLE_ADMIN = "admin"
+
 # Constant Keys
 KEY_TOKEN_TYPE = "token_type"
 KEY_ACCESS_TOKEN = "access_token"
