@@ -15,13 +15,15 @@ const PageBlogs = async () => {
     return <>Loading</>
   }
 
+  let blog = data as Blog;
+
   return (
     <>
       <h1>My Blogs</h1>
 
-      {data.title}
+      {blog.title}
 
-      <img src={`http://localhost:8000/${data.image_url}?w=100`} alt="" />
+      <img src={`http://localhost:8000/${blog.image_url}?w=100`} alt="" />
     </>
   )
 };

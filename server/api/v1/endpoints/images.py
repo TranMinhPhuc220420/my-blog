@@ -29,7 +29,7 @@ def get_image_blog(
     namespace: str,
     filename: str,
     w: int = None,
-    h: int = None
+    h: int = None 
 ):
   """
   Get the image of a blog

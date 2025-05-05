@@ -9,7 +9,7 @@ from fastapi import status
 from core.security import decrypt_access_token, verify_access_token
 from core.config import (
   KEY_ACCESS_TOKEN, INVALID_ACCESS_TOKEN_ERROR_CODE,
-  EXPIRED_ACCESS_TOKEN_ERROR_CODE, BAD_REQUEST_ERROR_CODE,
+  EXPIRED_ACCESS_TOKEN_ERROR_CODE, BAD_REQUEST_ERROR_CODE, KEY_REFRESH_TOKEN,
 )
 
 from core.logger import get_logger
@@ -26,11 +26,14 @@ def process_response(request) -> Request:
   access_token = None
   payload = None
 
+  logger.info(auth_header)
   if auth_header:
     scheme, access_token_raw = auth_header.split()
+    logger.info(scheme)
+    logger.info(access_token_raw)
     if scheme.lower() != "bearer":
       raise ValueError("Invalid scheme")
-    if not access_token_raw or len(access_token_raw.split(".")) != 3:
+    if not access_token_raw:
       raise ValueError("Invalid access token")
     access_token = decrypt_access_token(access_token_raw)
   elif encrypt_access_token_raw:
@@ -39,8 +42,8 @@ def process_response(request) -> Request:
   if access_token is not None:
     payload = verify_access_token(access_token)
 
-  # logger.info(access_token)
-  # logger.info(payload)
+  logger.info(access_token)
+  logger.info(payload)
   request.state.jwt_payload = payload
 
   return request
