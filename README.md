@@ -46,9 +46,6 @@ project-root/
 ├── server/                     # FastAPI Backend
 │
 ├── docker-compose.yml          # Main Docker Compose (FE + BE)
-├── docker-compose.mongo.yml    # MongoDB Compose
-├── docker-compose.override.yml # Dev volumes mount
-│
 ├── Dockerfile-client           # Dockerfile for frontend
 ├── Dockerfile-server           # Dockerfile for backend
 │

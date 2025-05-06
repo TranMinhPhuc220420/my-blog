@@ -1,0 +1,38 @@
+# Common
+.env
+.env.*
+*.log
+*.sqlite3
+*.db
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+.DS_Store
+
+# Python Virtual Envs
+venv/
+env/
+environment/
+server/environment/
+
+# Node (client/)
+node_modules/
+client/node_modules/
+client/.next/
+client/.turbo/
+client/.eslintcache
+
+# Build outputs
+build/
+dist/
+.cache/
+*.egg-info/
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+
+# Git
+.git/
+.gitignore

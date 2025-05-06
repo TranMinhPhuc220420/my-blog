@@ -1,5 +1,5 @@
 # Define compose files
-COMPOSE_FILES = -f docker-compose.yml -f docker-compose.mongo.yml
+COMPOSE_FILES = -f docker-compose.yml
 
 # Up services
 up:

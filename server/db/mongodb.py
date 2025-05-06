@@ -24,8 +24,10 @@ async def connect_to_mongo() -> bool:
       client = MongoClient(MONGO_DB_URL)
       db = client[MONGO_NAMESPACE_DEFAULT]
 
-      client.admin.command('ping')
+      logger.info(f'MONGO_DB_URL={MONGO_DB_URL}')
+      logger.info(f'MONGO_NAMESPACE_DEFAULT={MONGO_NAMESPACE_DEFAULT}')
       logger.info("Connected to MongoDB!")
+      # client.admin.command('ping')
 
       return True
 
@@ -73,7 +75,7 @@ def get_mongo_db() -> Database:
     connect_to_mongo()
 
   if db is None:
-    raise ConnectionError("MongoDB connection is not established.")
+    raise ConnectionError(f'MongoDB connection is not established. {MONGO_DB_URL} {MONGO_NAMESPACE_DEFAULT}')
 
   return db
 
