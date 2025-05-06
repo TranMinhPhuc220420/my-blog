@@ -14,7 +14,17 @@ const PageLogin = () => {
       method: 'POST',
       body: formData,
     })
-      .then(res => res.json())
+      .then(async res => {
+        let data = await res.json();
+        if (data) {
+          // Check redirect in params url
+          const url = new URL(window.location.href);
+          const redirect = url.searchParams.get('redirect');
+          if (redirect) {
+            window.location.href = redirect;
+          }
+        }
+      })
       .then(data => console.log(data))
   };
   const getMe = async (event: FormEvent) => {

@@ -6,7 +6,6 @@ import { NextResponse } from 'next/server'
 export async function GET(request: Request) {
   
   let res = await getMe();
-  console.log(res);
 
-  return NextResponse.json(res.data)
+  return NextResponse.json(res)
 }

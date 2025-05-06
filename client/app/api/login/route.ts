@@ -12,7 +12,6 @@ export async function POST(request: Request) {
 
   let res = await login(username, password);
   if (res.data) {
-    
     const access_token = res.data.access_token;
     let my = await cookies();
     my.set('access_token', access_token);

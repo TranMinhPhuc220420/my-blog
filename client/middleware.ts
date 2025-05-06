@@ -14,13 +14,12 @@ export async function middleware(request: NextRequest) {
 
   if (isProtected) {
     let me = await getMe();
-    console.log(me.data);
     
-    // if (!token) {
-    //   const loginUrl = new URL('/login', request.url)
-    //   loginUrl.searchParams.set('redirect', pathname)
-    //   return NextResponse.redirect(loginUrl)
-    // }
+    if (!me) {
+      const loginUrl = new URL('/login', request.url)
+      loginUrl.searchParams.set('redirect', pathname)
+      return NextResponse.redirect(loginUrl)
+    }
   }
 
   return NextResponse.next()

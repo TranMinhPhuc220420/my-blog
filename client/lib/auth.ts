@@ -15,29 +15,32 @@ export const login = async (username: string, password: string): Promise<any> =>
   }
 }
 
-export const getMe = async (): Promise<any> => {
-  try {
-    const withCredentials = true;
-    const url = 'http://localhost:8000/api/v1/test/me';
-    let my = await cookies();
-
-    const accessToken = my.get('access_token')?.value;
-
-    const response = await axios.get(url, { 
-      headers: { Authorization: `Bearer ${accessToken}` }, 
-      withCredentials 
-    });
-
-    // let res = fetch(url, {
-    //   method: 'GET',
-    //   credentials: 'include',
-    // });
-    // const response = (await res).json();
-
-    return response;
-  } catch (error) {
-    console.error("Failed to fetch user information:", error);
-    throw error;
-  }
+export const getMe = (): Promise<any|null> => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const withCredentials = true;
+      const url = 'http://localhost:8000/api/v1/test/me';
+      let my = await cookies();
+  
+      const accessToken = my.get('access_token')?.value;
+  
+      axios.get(url, { 
+        headers: { Authorization: `Bearer ${accessToken}` }, 
+        withCredentials 
+      })
+      .then(response => {
+        resolve(response.data);
+      })
+      .catch(error => {
+        resolve(null);
+      })
+      .finally(() => console.log("finally"));
+  
+  
+    } catch (error) {
+      console.error("Failed to fetch user information:", error);
+      throw error;
+    }
+  })
 };
 
